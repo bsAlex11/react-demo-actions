@@ -1,5 +1,5 @@
 name: Test and Deploy Porject
-on: push
+on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: windows-latest
