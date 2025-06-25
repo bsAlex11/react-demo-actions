@@ -1,0 +1,44 @@
+name: Lint & Test & Deploy
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install deps
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+  test:
+    needs: [lint]
+    runs-on: windows-latest
+    steps:
+      - name: Install code
+        uses: actions/checkout@v4
+      - name: Add node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install deps
+        run: npm ci
+      - name: Run tests
+        run: npm run test
+  build:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install code
+        uses: actions/checkout@v4
+      - name: Add node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install deps
+        run: npm ci
+      - name: Build
+        run: npm run build
