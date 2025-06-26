@@ -2,7 +2,16 @@ name: Manage pull request
 on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
+    branches: # the targeted branches
+      - master
+      - 'dev-*' # dev-abc dev-a-b-c
+      - 'feat/**' # feat/new feat/new/stuff
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # dev-abc dev-a-b-c
+      - 'feat/**' # feat/new feat/new/stuff
 jobs:
   lint:
     runs-on: ubuntu-latest
