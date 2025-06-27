@@ -4,10 +4,13 @@ on:
     branches: [master, dev]
 env:
   VITE_APP_TITLE: pula-pula
+  VITE_API_URL: ${{secrets.VITE_API_URL}}
 jobs:
   test:
+    environment: testing
     env:
-      VITE_SECRET_KE: pizda-pizda
+      VITE_SECRET_KEY: pizda-pizda
+      VITE_API_KEY: ${{ secrets.VITE_API_KEY  }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -23,6 +26,12 @@ jobs:
         run: npm run test
       - name: Output information
         run: echo "Ia sefu variabila ${{env.VITE_APP_TITLE}}"
+      - name: Output secret info
+        run: echo ${{ env.VITE_API_URL }}
+      - name: Output environment info
+        run: echo ${{ env.VITE_API_KEY }}
+      - name: Output hardcoded value
+        run: echo ${{ env.VITE_SECRET_KEY }}
   deploy:
     needs: test
     runs-on: ubuntu-latest
