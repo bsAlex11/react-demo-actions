@@ -70,6 +70,8 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yaml
+    with:
+      artifact-name: dist-files
   report:
     if: failure()
     runs-on: ubuntu-latest
