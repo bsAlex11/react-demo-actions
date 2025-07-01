@@ -8,6 +8,12 @@ jobs:
       matrix:
         node-version: [18, 22]
         operating-system: [ubuntu-latest, windows-latest]
+        include:
+          - node-version: 16
+            operating-system: windows-latest
+        exclude:
+          - node-version: 18
+          - operating-system: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v4
