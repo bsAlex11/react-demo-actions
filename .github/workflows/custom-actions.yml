@@ -71,3 +71,8 @@ jobs:
         run: |
           echo "Probleme sefu"
           echo "Nu ne mai rabda pamantu"
+  information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output info from custom js
+        uses: ./.github/actions/deploy-s3-js
