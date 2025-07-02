@@ -1,0 +1,5 @@
+name: 'Deploy to AWS'
+description: 'We deploy the app'
+runs:
+  using: 'node16'
+  main: 'main.js'
