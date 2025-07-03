@@ -60,8 +60,11 @@ jobs:
           name: dist-files
       - name: Output contents
         run: ls
-      - name: Deploy
-        run: echo "Deploying..."
+      # - name: Deploy
+      #   uses: ./.github/actions/deploy-s3-js
+      #   with:
+      #     bucket: my-bucket-name
+      #     dist-folder: ./dist
   report:
     if: failure()
     runs-on: ubuntu-latest

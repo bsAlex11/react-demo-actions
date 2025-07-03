@@ -1,5 +1,19 @@
 name: 'Deploy to AWS'
 description: 'We deploy the app'
+inputs:
+  bucket:
+    description: 'The bucket'
+    required: true
+  bucket-region:
+    description: 'bucket region'
+    required: false
+    default: 'us-east-1'
+  dist-folder:
+    description: 'folder with files'
+    required: true
+outputs:
+  web-url:
+    description: 'the site url'
 runs:
   using: 'node16'
   main: 'main.js'
